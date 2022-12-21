@@ -7,7 +7,7 @@ namespace SwagLabFinalExam.Page
     public class ProductPage
     {
         private IWebDriver driver = WebDrivers.Instance;
-
+        
         public IWebElement AddOnesie => driver.FindElement(By.Id("add-to-cart-sauce-labs-onesie"));
         public IWebElement AddBikeLight => driver.FindElement(By.Id("add-to-cart-sauce-labs-bike-light"));
         public IWebElement AddBoltT_Shirt => driver.FindElement(By.Id("add-to-cart-sauce-labs-bolt-t-shirt"));
@@ -18,6 +18,8 @@ namespace SwagLabFinalExam.Page
         public IWebElement AddBackPack => driver.FindElement(By.Id("add-to-cart-sauce-labs-backpack"));
         public IWebElement AddJacket => driver.FindElement(By.Id("add-to-cart-sauce-labs-fleece-jacket"));
 
+
+        public string HomeUrl = "https://www.saucedemo.com/inventory.html";
 
         public void SelectOption(string text)
 
