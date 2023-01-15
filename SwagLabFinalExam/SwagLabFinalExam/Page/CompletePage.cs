@@ -11,8 +11,7 @@ namespace SwagLabFinalExam.Page
     public class CompletePage
     {
         private IWebDriver driver = WebDrivers.Instance;
-        
-        public IWebElement OrderFinished => driver.FindElement(By.CssSelector("#checkout_complete_container .complete-header"));
+                
         public IWebElement ButtonBurger => driver.FindElement(By.Id("react-burger-menu-btn"));
         public IWebElement Logout => driver.FindElement(By.Id("logout_sidebar_link"));
     }
