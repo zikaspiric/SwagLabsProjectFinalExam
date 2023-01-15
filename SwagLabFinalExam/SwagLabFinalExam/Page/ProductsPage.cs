@@ -1,13 +1,18 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using SwagLabFinalExam.Driver;
 
 namespace SwagLabFinalExam.Page
 {
-    public class ProductPage
+    public class ProductsPage
     {
         private IWebDriver driver = WebDrivers.Instance;
-        
+
         public IWebElement AddOnesie => driver.FindElement(By.Id("add-to-cart-sauce-labs-onesie"));
         public IWebElement AddBikeLight => driver.FindElement(By.Id("add-to-cart-sauce-labs-bike-light"));
         public IWebElement AddBoltT_Shirt => driver.FindElement(By.Id("add-to-cart-sauce-labs-bolt-t-shirt"));
@@ -19,7 +24,8 @@ namespace SwagLabFinalExam.Page
         public IWebElement AddJacket => driver.FindElement(By.Id("add-to-cart-sauce-labs-fleece-jacket"));
 
 
-        public string HomeUrl = "https://www.saucedemo.com/inventory.html";
+        public string InventoryUrl = "https://www.saucedemo.com/inventory.html";
+        
 
         public void SelectOption(string text)
 
