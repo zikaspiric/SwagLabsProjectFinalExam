@@ -6,7 +6,8 @@ namespace SwagLabFinalExam.Tests
     public class Tests
     {
         LoginPage loginpage;
-        ProductPage productPage;
+        ProductsPage productspage;  
+        
         string Message = "Epic sadface: Username and password do not match any user in this service";
 
         [SetUp]
@@ -14,7 +15,7 @@ namespace SwagLabFinalExam.Tests
         {
             WebDrivers.Initialize();
             loginpage = new LoginPage();
-            productPage = new ProductPage();
+            productspage = new ProductsPage();
         }
 
         [TearDown]
@@ -51,7 +52,7 @@ namespace SwagLabFinalExam.Tests
         public void TC04_EnterValidData_ShouldBeLoginOnPage()
         {
             loginpage.Login("standard_user", "secret_sauce");
-            Assert.That("https://www.saucedemo.com/inventory.html", Is.EqualTo(productPage.HomeUrl));
+            Assert.That("https://www.saucedemo.com/inventory.html", Is.EqualTo(productspage.InventoryUrl));
 
         }
 

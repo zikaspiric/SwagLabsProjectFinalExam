@@ -6,16 +6,22 @@ namespace SwagLabFinalExam.Tests
     public class BuyProductsTest
     {
         LoginPage loginPage;
-        ProductPage productPage;
-        CartPage cartPage;
+        ProductsPage productsPage;
+        YourCartPage yourCartPage;
+        YourInfoPage yourInfoPage;
+        OverViewPage overViewPage;
+        CompletePage completePage;
 
         [SetUp]
         public void Setup()
         {
             WebDrivers.Initialize();
             loginPage = new LoginPage();
-            productPage = new ProductPage();
-            cartPage = new CartPage();
+            productsPage = new ProductsPage();
+            yourCartPage = new YourCartPage();
+            yourInfoPage = new YourInfoPage();
+            overViewPage= new OverViewPage();
+            completePage= new CompletePage();
         }
 
         [TearDown]
@@ -28,38 +34,38 @@ namespace SwagLabFinalExam.Tests
         public void TC01_AddThreeNewProductInCart_ShouldDisplayedThreeProductsInCart()
         {
             loginPage.Login("standard_user", "secret_sauce");
-            productPage.AddBackPack.Click();
-            productPage.AddBoltT_Shirt.Click();
-            productPage.AddJacket.Click();
-            productPage.Cart.Click();
+            productsPage.AddBackPack.Click();
+            productsPage.AddBoltT_Shirt.Click();
+            productsPage.AddJacket.Click();
+            productsPage.Cart.Click();
 
-            Assert.That(cartPage.YourCartPage.Displayed);
+            Assert.That(yourCartPage.YourCart.Displayed);
         }
 
         [Test]
         public void TC02_SortProductByLowPrice_ShouldSortByLowPrice()
         {
             loginPage.Login("standard_user", "secret_sauce");
-            productPage.SelectOption("Price (low to high)");
-            productPage.AddOnesie.Click();
-            productPage.AddBikeLight.Click();
-            productPage.AddBoltT_Shirt.Click();
+            productsPage.SelectOption("Price (low to high)");
+            productsPage.AddOnesie.Click();
+            productsPage.AddBikeLight.Click();
+            productsPage.AddBoltT_Shirt.Click();
 
-            Assert.That("3", Is.EqualTo(productPage.Cart.Text));
+            Assert.That("3", Is.EqualTo(productsPage.Cart.Text));
         }
 
         [Test]
         public void TC03_AddAndRemoveTwoProducts_ShouldAddedAndRemovedTwoProducts()
         {
             loginPage.Login("standard_user", "secret_sauce");
-            productPage.AddOnesie.Click();
-            productPage.AddBikeLight.Click();
-            productPage.ShopCartClick.Click();
-            cartPage.RemoveOnesie.Click();
-            cartPage.RemoveBikeLight.Click();
-            cartPage.ButtonContinueShopping.Click();
+            productsPage.AddOnesie.Click();
+            productsPage.AddBikeLight.Click();
+            productsPage.ShopCartClick.Click();
+            yourCartPage.RemoveOnesie.Click();
+            yourCartPage.RemoveBikeLight.Click();
+            yourCartPage.ButtonContinueShopping.Click();
 
-            Assert.That("", Is.EqualTo(productPage.EmptyCart.Text));
+            Assert.That("", Is.EqualTo(productsPage.EmptyCart.Text));
 
         }
 
@@ -67,17 +73,17 @@ namespace SwagLabFinalExam.Tests
         public void TC04_CheckItemTotalPrice_ItemTotalPriceShouldBeChecked()
         {
             loginPage.Login("standard_user", "secret_sauce");
-            productPage.AddOnesie.Click();
-            productPage.AddBikeLight.Click();
-            productPage.AddBoltT_Shirt.Click();
-            productPage.ShopCartClick.Click();
-            cartPage.Checkout.Click();
-            cartPage.FirstName.SendKeys("Zika");
-            cartPage.LastName.SendKeys("Spiric");
-            cartPage.ZipCode.SendKeys("11000");
-            cartPage.ButtonContinue.Submit();
+            productsPage.AddOnesie.Click();
+            productsPage.AddBikeLight.Click();
+            productsPage.AddBoltT_Shirt.Click();
+            productsPage.ShopCartClick.Click();
+            yourCartPage.Checkout.Click();
+            yourInfoPage.FirstName.SendKeys("Zika");
+            yourInfoPage.LastName.SendKeys("Spiric");
+            yourInfoPage.ZipCode.SendKeys("11000");
+            yourInfoPage.ButtonContinue.Submit();
 
-            Assert.That("Item total: $33.97", Is.EqualTo(cartPage.ItemTotal.Text));
+            Assert.That("Item total: $33.97", Is.EqualTo(overViewPage.ItemTotal.Text));
 
         }
 
@@ -85,17 +91,17 @@ namespace SwagLabFinalExam.Tests
         public void TC05_CheckTotalPrice_TotalPriceShouldBeChecked()
         {
             loginPage.Login("standard_user", "secret_sauce");
-            productPage.AddOnesie.Click();
-            productPage.AddBikeLight.Click();
-            productPage.AddBoltT_Shirt.Click();
-            productPage.ShopCartClick.Click();
-            cartPage.Checkout.Click();
-            cartPage.FirstName.SendKeys("Zika");
-            cartPage.LastName.SendKeys("Spiric");
-            cartPage.ZipCode.SendKeys("11000");
-            cartPage.ButtonContinue.Submit();
+            productsPage.AddOnesie.Click();
+            productsPage.AddBikeLight.Click();
+            productsPage.AddBoltT_Shirt.Click();
+            productsPage.ShopCartClick.Click();
+            yourCartPage.Checkout.Click();
+            yourInfoPage.FirstName.SendKeys("Zika");
+            yourInfoPage.LastName.SendKeys("Spiric");
+            yourInfoPage.ZipCode.SendKeys("11000");
+            yourInfoPage.ButtonContinue.Submit();
 
-            Assert.That("Total: $36.69", Is.EqualTo(cartPage.Total.Text));
+            Assert.That("Total: $36.69", Is.EqualTo(overViewPage.Total.Text));
 
         }
 
@@ -103,18 +109,20 @@ namespace SwagLabFinalExam.Tests
         public void TC06_Buy3Products_ShouldBuy3Products()
         {
             loginPage.Login("standard_user", "secret_sauce");
-            productPage.AddOnesie.Click();
-            productPage.AddBikeLight.Click();
-            productPage.AddBoltT_Shirt.Click();
-            productPage.ShopCartClick.Click();
-            cartPage.Checkout.Click();
-            cartPage.FirstName.SendKeys("Zika");
-            cartPage.LastName.SendKeys("Spiric");
-            cartPage.ZipCode.SendKeys("11000");
-            cartPage.ButtonContinue.Submit();
-            cartPage.Finish.Click();
+            productsPage.AddOnesie.Click();
+            productsPage.AddBikeLight.Click();
+            productsPage.AddBoltT_Shirt.Click();
+            productsPage.ShopCartClick.Click();
+            yourCartPage.Checkout.Click();
+            yourInfoPage.FirstName.SendKeys("Zika");
+            yourInfoPage.LastName.SendKeys("Spiric");
+            yourInfoPage.ZipCode.SendKeys("11000");
+            yourInfoPage.ButtonContinue.Submit();
+            overViewPage.Finish.Click();
+            completePage.ButtonBurger.Click();
+            completePage.Logout.Click();
 
-            Assert.That("THANK YOU FOR YOUR ORDER", Is.EqualTo(cartPage.OrderFinished.Text));
+            Assert.That("https://www.saucedemo.com/", Is.EqualTo(loginPage.HomeUrl));
 
         }
     }
