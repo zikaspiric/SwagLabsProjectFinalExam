@@ -121,6 +121,7 @@ namespace SwagLabFinalExam.Tests
             overViewPage.Finish.Click();
             completePage.ButtonBurger.Click();
             completePage.Logout.Click();
+
             String currentUrl = WebDrivers.Instance.Url;
             Assert.That(currentUrl, Is.EqualTo(loginPage.HomeUrl));
 
